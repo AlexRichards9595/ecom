@@ -25,6 +25,7 @@ public class CatalogMvcTest {
 	@Test
 	public void shouldRetreiveProducts () throws Exception {
 		mvc.perform(MockMvcRequestBuilders.get("/products")).andExpect(status().isOk());
+		
 	}
 	
 }
