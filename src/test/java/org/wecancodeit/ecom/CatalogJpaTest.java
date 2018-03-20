@@ -16,7 +16,7 @@ public class CatalogJpaTest {
 	private CrudRepository<Product, Long> productRepo;
 	
 	@Test
-	public void KungFoo() {
-		
-	}
+	public void shouldInitializeProductRepository() {}
+	
+	
 }
