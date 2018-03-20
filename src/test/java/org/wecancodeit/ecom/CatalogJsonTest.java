@@ -6,7 +6,8 @@ import java.io.IOException;
 
 import javax.annotation.Resource;
 
-import org.assertj.core.api.Assertions;
+import static org.assertj.core.api.Assertions.assertThat;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.autoconfigure.json.JsonTest;
@@ -27,7 +28,7 @@ public class CatalogJsonTest {
 		
 		JsonContent<Product> content = productJson.write(product);
 		
-		Assertions.assertThat(content).extractingJsonPathValue("@.name").isEqualTo("product name");
+		assertThat(content).extractingJsonPathValue("@.name").isEqualTo("product name");
 	}
 	
 	@Test
@@ -36,6 +37,6 @@ public class CatalogJsonTest {
 		
 		Product parsed = productJson.parseObject(expectedJson);
 		
-		Assertions.assertThat(parsed.getName()).isEqualTo("product name");
+		assertThat(parsed.getName()).isEqualTo("product name");
 	}
 }
