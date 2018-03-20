@@ -1,11 +1,12 @@
 package org.wecancodeit.ecom;
 
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
 import org.springframework.stereotype.Component;
 
-@Component
+@Entity
 public class Product {
 
 	@Id
@@ -14,6 +15,7 @@ public class Product {
 	
 	private String name;
 	
+	@SuppressWarnings("unused")
 	private Product() {}
 
 	public Product(String name) {
