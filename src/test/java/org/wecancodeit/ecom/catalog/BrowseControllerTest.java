@@ -1,4 +1,4 @@
-package org.wecancodeit.ecom;
+package org.wecancodeit.ecom.catalog;
 
 import static org.hamcrest.Matchers.any;
 import static org.hamcrest.Matchers.contains;
@@ -13,12 +13,13 @@ import static org.mockito.Mockito.when;
 import java.util.Collection;
 import java.util.Collections;
 
-import org.aspectj.lang.annotation.Before;
+import org.junit.Before;
 import org.junit.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.springframework.data.repository.CrudRepository;
+import org.wecancodeit.ecom.catalog.BrowseController;
 
 public class BrowseControllerTest {
 
@@ -31,7 +32,7 @@ public class BrowseControllerTest {
 	@Mock
 	private Product product;
 	
-	@org.junit.Before
+	@Before
 	public void setUp() {
 		MockitoAnnotations.initMocks(this);
 	}

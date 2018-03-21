@@ -1,4 +1,4 @@
-package org.wecancodeit.ecom;
+package org.wecancodeit.ecom.catalog;
 
 import org.springframework.data.repository.CrudRepository;
 
