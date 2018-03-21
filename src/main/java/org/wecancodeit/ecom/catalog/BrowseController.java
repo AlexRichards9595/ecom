@@ -23,6 +23,17 @@ public class BrowseController {
 
 	@RequestMapping("/products/{id}")
 	public Product findProduct(@PathVariable long id) {
-		return productRepo.findOne(id);
+		Product selectedProduct = productRepo.findOne(id);
+		if (selectedProduct != null) {
+			return selectedProduct;
+		}
+		throw new ProductNotFoundException();
+		
+		
+	}
+	
+	
+	public class ProductNotFoundException extends RuntimeException {
+		
 	}
 }

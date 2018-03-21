@@ -20,6 +20,7 @@ import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.springframework.data.repository.CrudRepository;
 import org.wecancodeit.ecom.catalog.BrowseController;
+import org.wecancodeit.ecom.catalog.BrowseController.ProductNotFoundException;
 
 public class BrowseControllerTest {
 
@@ -55,6 +56,11 @@ public class BrowseControllerTest {
 		assertThat(result, is(product));
 	}
 	
+	@Test (expected = ProductNotFoundException.class)
+	public void shouldReturnNotFoundForBadProductId() {
+		underTest.findProduct(42L);
+	}
+	
 	@Test
 	public void shouldRetrieveProductsFromDb() {
 		when(productRepo.findAll()).thenReturn(Collections.singleton(product));
@@ -62,6 +68,7 @@ public class BrowseControllerTest {
 		Iterable<Product> result = underTest.findProducts();
 		
 		assertThat(result, contains(product));
-
 	}
+	
+	
 }
