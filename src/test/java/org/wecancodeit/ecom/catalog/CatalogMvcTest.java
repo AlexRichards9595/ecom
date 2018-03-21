@@ -41,6 +41,8 @@ public class CatalogMvcTest {
 		
 	}
 	
-	//need test for 404 (not found), too
-	
+	@Test
+	public void shouldNotFindProductId() throws Exception {
+		mvc.perform(get("/products/42")).andExpect(status().isNotFound());
+	}
 }
