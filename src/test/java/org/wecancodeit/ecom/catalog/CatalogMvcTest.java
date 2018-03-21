@@ -2,12 +2,14 @@ package org.wecancodeit.ecom.catalog;
 
 import javax.annotation.Resource;
 
+import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.mockito.Mockito;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.data.repository.CrudRepository;
@@ -33,9 +35,12 @@ public class CatalogMvcTest {
 	
 	@Test
 	public void shouldRetrieveAnIndividualProduct() throws Exception {
+		when(productRepo.findOne(42L)).thenReturn(new Product("some product"));
 		mvc.perform(get("/products/42")).andExpect(status().isOk());
 		
 		
 	}
+	
+	//need test for 404 (not found), too
 	
 }
