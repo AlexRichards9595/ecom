@@ -22,7 +22,7 @@ public class ContainerRestTest {
 	private TestRestTemplate restTemplate;
 	
 	@Test
-	public void exampleTest() {
+	public void shouldGetProducts() {
 		ResponseEntity<String> response = restTemplate.getForEntity("/products", String.class);
 		
 		HttpStatus status = response.getStatusCode();
