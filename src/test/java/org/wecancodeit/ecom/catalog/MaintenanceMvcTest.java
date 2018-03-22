@@ -53,13 +53,13 @@ public class MaintenanceMvcTest {
 	}
 	
 	@Test
-	public void shouldAssignProductId () throws Exception {
+	public void shouldCreateProductAsExpected () throws Exception {
 		Product product = new Product ("test product");
-		when(productRepo.save(any(Product.class))).thenReturn(new Product("foo"));
+		when(productRepo.save(any(Product.class))).thenReturn(new Product("response product name"));
 		String productJson = jsonMapper.writeValueAsString(product);
 		
 		MockHttpServletRequestBuilder request = post("/products").content(productJson);
-		mvc.perform(request).andExpect(MockMvcResultMatchers.jsonPath("@.id", is(42L)));
+		mvc.perform(request).andExpect(MockMvcResultMatchers.jsonPath("@.name", is("response product name")));
 	}
 	
 	
