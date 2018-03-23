@@ -20,15 +20,15 @@ public class CartItem {
 	@ManyToOne
 	private Cart cart;
 
-//	private Inventory product;
-	
-//	public Inventory getProduct() {
-//		return product;
-//	}
-
 	public Cart getCart() {
 		return cart;
 	}
+
+	// private Inventory product;
+
+	// public Inventory getProduct() {
+	// return product;
+	// }
 
 	public long getId() {
 		return id;
@@ -44,7 +44,7 @@ public class CartItem {
 
 	public CartItem(String name, Cart cart) {
 		this.name = name;
-//		this.product = product;
+		// this.product = product;
 		this.cart = cart;
 	}
 
@@ -69,5 +69,4 @@ public class CartItem {
 			return false;
 		return true;
 	}
-
 }

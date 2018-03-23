@@ -1,13 +1,12 @@
 package org.wecancodeit.ecom.catalog;
 
-import java.util.Arrays;
+import java.awt.List;
 import java.util.Collection;
 import java.util.HashSet;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -22,7 +21,7 @@ public class Cart {
 
 	@JsonIgnore
 	@OneToMany(mappedBy = "cart")
-	private Collection<CartItem> cartItems;
+	private Collection<CartItem> cartItems = new HashSet<CartItem>();
 
 	public Collection<CartItem> getCartItems() {
 		return cartItems;
@@ -37,7 +36,8 @@ public class Cart {
 	}
 
 	@SuppressWarnings("unused")
-	private Cart() {}
+	private Cart() {
+	}
 
 	public Cart(String name) {
 		this.name = name;
@@ -47,11 +47,12 @@ public class Cart {
 		cartItems.add(cartItem);
 	}
 
-	public void removeItem(CartItem cartItem) {
-		cartItems.remove(cartItem);
-	}
+//	public void removeItem(CartItem cartItem) {
+//		cartItems.(cartItem);
+//	}
+
 	public void clearCart() {
-		cartItems.removeAll(cartItems);
+		cartItems.clear();
 	}
 
 	@Override
@@ -75,17 +76,5 @@ public class Cart {
 			return false;
 		return true;
 	}
-
-
-	
-	
-
-	
-	
-	
-	
-
-
-	
 
 }

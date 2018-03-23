@@ -6,16 +6,14 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
 @Component
-public class PartyTimePop implements CommandLineRunner{
+public class PartyTimePop implements CommandLineRunner {
 
 	@Resource
 	private InventoryRepository productRepo;
-	
-	@Resource 
+
+	@Resource
 	private CartRepository cartRepo;
-	
-	
-	
+
 	@Override
 	public void run(String... args) throws Exception {
 
@@ -25,7 +23,5 @@ public class PartyTimePop implements CommandLineRunner{
 		Cart cart = new Cart("go");
 		cart = cartRepo.save(cart);
 	}
-	
-	
 
 }
