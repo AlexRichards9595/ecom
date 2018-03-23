@@ -46,13 +46,24 @@ public class ProductMappingTest {
 		Cart cart = cartRepo.save(new Cart("go", dillPickles, handBags));
 		cart.removeItem(dillPickles);
 		
-			
 		entityManager.flush();
 		entityManager.clear();
-
-
+		
 		assertThat(cart.getProducts(), not(hasItem(dillPickles)));
 		assertThat(cart.getProducts(), contains(handBags));
+	}
+	
+	@Test
+	public void shouldAddItemToCart() {
+		Product dillPickles = productRepo.save(new Product("Dill Pickles"));
+		Product handBags = productRepo.save(new Product("Gucci"));
+		
+		Cart cart = cartRepo.save(new Cart("go", dillPickles));
+		cart = cartRepo.save(cart);
+		
+		cart.addItem(handBags);
+		
+		assertThat(cart.getProducts(), containsInAnyOrder(dillPickles, handBags));
 		
 	}
 	

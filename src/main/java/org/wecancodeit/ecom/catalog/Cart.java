@@ -41,6 +41,9 @@ public class Cart {
 		this.products = new HashSet<>(Arrays.asList(products));
 	}
 
+	public void addItem(Product product) {
+		products.add(product);
+	}
 
 	public void removeItem(Product product) {
 		products.remove(product);
@@ -67,6 +70,7 @@ public class Cart {
 			return false;
 		return true;
 	}
+
 	
 	
 
