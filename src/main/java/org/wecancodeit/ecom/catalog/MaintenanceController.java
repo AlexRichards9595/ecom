@@ -12,12 +12,12 @@ import org.springframework.web.bind.annotation.RestController;
 public class MaintenanceController {
 
 	@Resource
-	private CrudRepository<Product, Long> productRepo;
+	private CrudRepository<Inventory, Long> productRepo;
 	
 	
 	
 	@RequestMapping(path = "/products", method = RequestMethod.POST)
-	public Product createProduct(Product incoming) {
+	public Inventory createProduct(Inventory incoming) {
 		return productRepo.save(incoming);
 		
 	}

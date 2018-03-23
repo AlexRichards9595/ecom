@@ -11,21 +11,21 @@ import org.junit.runner.RunWith;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.test.context.junit4.SpringRunner;
-import org.wecancodeit.ecom.catalog.Product;
+import org.wecancodeit.ecom.catalog.Inventory;
 
 @RunWith(SpringRunner.class)
 @DataJpaTest
 public class CatalogJpaTest {
 
 	@Resource
-	private CrudRepository<Product, Long> productRepo;
+	private CrudRepository<Inventory, Long> productRepo;
 	
 	@Test
 	public void shouldInitializeProductRepository() {}
 	
 	@Test
 	public void shouldAssignIdWhenProductIsCreated () {
-		Product product = new Product("my new product");
+		Inventory product = new Inventory("my new product");
 		
 		product = productRepo.save(product);
 		

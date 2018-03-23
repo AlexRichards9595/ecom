@@ -14,7 +14,7 @@ import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.junit4.SpringRunner;
-import org.wecancodeit.ecom.catalog.Product;
+import org.wecancodeit.ecom.catalog.Inventory;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -39,10 +39,10 @@ public class ContainerRestTest {
 	
 	@Test
 	public void shouldCreateProduct() {
-		Product product = new Product("my new product");
+		Inventory product = new Inventory("my new product");
 		
-		ResponseEntity<Product> response = restTemplate.postForEntity("/products", product, Product.class);
-		Product created = response.getBody();
+		ResponseEntity<Inventory> response = restTemplate.postForEntity("/products", product, Inventory.class);
+		Inventory created = response.getBody();
 		
 		assertThat(created.getId(), is(greaterThan(0L)));
 	}

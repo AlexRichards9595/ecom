@@ -16,20 +16,20 @@ public class MaintenanceControllerTest {
 	private MaintenanceController underTest;
 	
 	@Mock
-	private CrudRepository<Product, Long> productRepo;
+	private CrudRepository<Inventory, Long> productRepo;
 	
 	@Mock
-	private Product incoming;
+	private Inventory incoming;
 	
 	@Mock 
-	private Product persisted;
+	private Inventory persisted;
 	
 	@Test
 	public void shouldCreateProduct() {
 		MockitoAnnotations.initMocks(this);
 		
 		when(productRepo.save(incoming)).thenReturn(persisted);
-		Product result = underTest.createProduct(incoming);
+		Inventory result = underTest.createProduct(incoming);
 		
 		assertThat(result, is(persisted));
 	}

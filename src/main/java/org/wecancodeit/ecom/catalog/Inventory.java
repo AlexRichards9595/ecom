@@ -9,14 +9,13 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 
 @Entity
-public class Product {
+public class Inventory {
 
 	@Id
 	@GeneratedValue
 	private long id;
-	
+
 	private String name;
-	
 
 	public long getId() {
 		return id;
@@ -25,16 +24,13 @@ public class Product {
 	public String getName() {
 		return name;
 	}
-	
+
 	@SuppressWarnings("unused")
-	private Product() {}
-	
-	
-	public Product(String name) {
+	private Inventory() {
+	}
+
+	public Inventory(String name) {
 		this.name = name;
 	}
 
-
-	
-	
 }

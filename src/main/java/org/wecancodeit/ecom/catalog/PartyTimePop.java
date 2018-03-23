@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 public class PartyTimePop implements CommandLineRunner{
 
 	@Resource
-	private ProductRepository productRepo;
+	private InventoryRepository productRepo;
 	
 	@Resource 
 	private CartRepository cartRepo;
@@ -19,10 +19,10 @@ public class PartyTimePop implements CommandLineRunner{
 	@Override
 	public void run(String... args) throws Exception {
 
-		Product dillPickles = productRepo.save(new Product("Dill Pickles"));
-		Product handBags = productRepo.save(new Product("Gucci"));
+		Inventory dillPickles = productRepo.save(new Inventory("Dill Pickles"));
+		Inventory handBags = productRepo.save(new Inventory("Gucci"));
 
-		Cart cart = new Cart("go", dillPickles, handBags);
+		Cart cart = new Cart("go");
 		cart = cartRepo.save(cart);
 	}
 	

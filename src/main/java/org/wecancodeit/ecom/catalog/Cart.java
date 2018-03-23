@@ -21,11 +21,11 @@ public class Cart {
 	private String name;
 
 	@JsonIgnore
-	@ManyToMany
-	private Collection<Product> products;
+	@OneToMany(mappedBy = "cart")
+	private Collection<CartItem> cartItems;
 
-	public Collection<Product> getProducts() {
-		return products;
+	public Collection<CartItem> getCartItems() {
+		return cartItems;
 	}
 
 	public long getId() {
@@ -39,20 +39,19 @@ public class Cart {
 	@SuppressWarnings("unused")
 	private Cart() {}
 
-	public Cart(String name, Product... products) {
+	public Cart(String name) {
 		this.name = name;
-		this.products = new HashSet<>(Arrays.asList(products));
 	}
 
-	public void addItem(Product product) {
-		products.add(product);
+	public void addItem(CartItem cartItem) {
+		cartItems.add(cartItem);
 	}
 
-	public void removeItem(Product product) {
-		products.remove(product);
+	public void removeItem(CartItem cartItem) {
+		cartItems.remove(cartItem);
 	}
 	public void clearCart() {
-		products.removeAll(products);
+		cartItems.removeAll(cartItems);
 	}
 
 	@Override

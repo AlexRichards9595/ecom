@@ -2,7 +2,7 @@ package org.wecancodeit.ecom.catalog;
 
 import org.springframework.data.repository.CrudRepository;
 
-public interface ProductRepository extends CrudRepository<Product, Long>{
+public interface InventoryRepository extends CrudRepository<Inventory, Long>{
 	
 
 }

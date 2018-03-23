@@ -26,7 +26,7 @@ public class CatalogMvcTest {
 	private MockMvc mvc;
 	
 	@MockBean
-	private CrudRepository<Product, Long> productRepo;
+	private CrudRepository<Inventory, Long> productRepo;
 	
 	@Test
 	public void shouldRetreiveProducts () throws Exception {
@@ -35,7 +35,7 @@ public class CatalogMvcTest {
 	
 	@Test
 	public void shouldRetrieveAnIndividualProduct() throws Exception {
-		when(productRepo.findOne(42L)).thenReturn(new Product("some product"));
+		when(productRepo.findOne(42L)).thenReturn(new Inventory("some product"));
 		mvc.perform(get("/products/42")).andExpect(status().isOk());
 		
 		
