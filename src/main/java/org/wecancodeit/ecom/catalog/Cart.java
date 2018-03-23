@@ -48,6 +48,9 @@ public class Cart {
 	public void removeItem(Product product) {
 		products.remove(product);
 	}
+	public void clearCart() {
+		products.removeAll(products);
+	}
 
 	@Override
 	public int hashCode() {
@@ -70,6 +73,7 @@ public class Cart {
 			return false;
 		return true;
 	}
+
 
 	
 	

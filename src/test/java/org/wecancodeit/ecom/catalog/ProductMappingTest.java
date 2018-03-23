@@ -59,12 +59,22 @@ public class ProductMappingTest {
 		Product handBags = productRepo.save(new Product("Gucci"));
 		
 		Cart cart = cartRepo.save(new Cart("go", dillPickles));
-		cart = cartRepo.save(cart);
 		
 		cart.addItem(handBags);
 		
 		assertThat(cart.getProducts(), containsInAnyOrder(dillPickles, handBags));
 		
+	}
+	
+	@Test
+	public void shouldClearCart() {
+		Product dillPickles = productRepo.save(new Product("Dill Pickles"));
+		Product handBags = productRepo.save(new Product("Gucci"));
+		
+		Cart cart = cartRepo.save(new Cart("go", dillPickles, handBags));
+		cart.clearCart();
+		
+		assertThat(cart.getProducts(), not(containsInAnyOrder(dillPickles, handBags)));
 	}
 	
 	
