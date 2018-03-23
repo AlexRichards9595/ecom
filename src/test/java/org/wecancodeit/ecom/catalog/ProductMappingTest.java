@@ -40,23 +40,19 @@ public class ProductMappingTest {
 	
 	@Test
 	public void shouldRemoveItemFromCart() {
-		Cart cart = cartRepo.save(new Cart("go"));
-		Product dillPickles = productRepo.save(new Product("Dill Pickles", cart));
-//		Product handBags = productRepo.save(new Product("Gucci", cart));
-//		Product apples = productRepo.save(new Product("Apples", cart));
-//		cart = cartRepo.save(cart);
+		Product dillPickles = productRepo.save(new Product("Dill Pickles"));
+		Product handBags = productRepo.save(new Product("Gucci"));
 		
-		long cartId = cart.getId();
+		Cart cart = cartRepo.save(new Cart("go", dillPickles, handBags));
+		cart.removeItem(dillPickles);
 		
+			
 		entityManager.flush();
 		entityManager.clear();
 
-//		handBags = productRepo.findOne(handBags.getId());
-		
-		cart = cartRepo.findOne(cartId);
-		
-//		assertThat(cart.getProducts(), not(hasItem(dillPickles)));
-		assertThat(cart.getProducts(), contains(dillPickles));
+
+		assertThat(cart.getProducts(), not(hasItem(dillPickles)));
+		assertThat(cart.getProducts(), contains(handBags));
 		
 	}
 	

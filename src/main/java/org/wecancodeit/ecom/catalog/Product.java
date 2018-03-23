@@ -1,8 +1,11 @@
 package org.wecancodeit.ecom.catalog;
 
+import java.util.Collection;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 
 @Entity
@@ -14,11 +17,11 @@ public class Product {
 	
 	private String name;
 	
-	@ManyToOne
-	private Cart cart;
+	@ManyToMany(mappedBy = "products")
+	private Collection<Cart> carts;
 	
-	public Cart getCart() {
-		return cart;
+	public Collection<Cart> getCart() {
+		return carts;
 	}
 	
 
@@ -38,10 +41,6 @@ public class Product {
 		this.name = name;
 	}
 
-	public Product(String name, Cart cart) {
-		this.name = name;
-		this.cart = cart;
-	}
 
 	@Override
 	public int hashCode() {
@@ -65,12 +64,6 @@ public class Product {
 		return true;
 	}
 
-	public void removeCart(Cart cart) {
-		
-	}
-
-	
-	
 	
 	
 }

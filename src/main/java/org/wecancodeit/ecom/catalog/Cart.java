@@ -7,6 +7,7 @@ import java.util.HashSet;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 
 @Entity
@@ -17,7 +18,7 @@ public class Cart {
 	private long id;
 	private String name;
 
-	@OneToMany(mappedBy = "cart")
+	@ManyToMany
 	private Collection<Product> products;
 
 	public Collection<Product> getProducts() {
@@ -42,7 +43,7 @@ public class Cart {
 
 
 	public void removeItem(Product product) {
-//		products.remove(product);
+		products.remove(product);
 	}
 
 	@Override
