@@ -10,6 +10,8 @@ import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 public class Cart {
 
@@ -18,6 +20,7 @@ public class Cart {
 	private long id;
 	private String name;
 
+	@JsonIgnore
 	@ManyToMany
 	private Collection<Product> products;
 

@@ -17,6 +17,7 @@ public class Product {
 	
 	private String name;
 	
+	
 	@ManyToMany(mappedBy = "products")
 	private Collection<Cart> carts;
 	
