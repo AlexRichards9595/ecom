@@ -17,21 +17,20 @@ import org.springframework.web.bind.annotation.RestController;
 public class BrowseController {
 
 	@Resource
-	private ProductRepository productRepo;
+	private CrudRepository<Product, Long> productRepo;
 	
-	@Resource
-	private  CartRepository cartRepo;
+
 	
-	@RequestMapping(path = "/carts", method = RequestMethod.GET)
-	public Iterable<Cart> findCarts() {
-		return cartRepo.findAll();
+	@RequestMapping(path = "/products", method = RequestMethod.GET)
+	public Iterable<Product> findProducts() {
+		return productRepo.findAll();
 	}
 
-	@RequestMapping("/carts/{id}")
-	public Collection<Product> findCartProducts(@PathVariable long id) {
-		Cart selectedCart = cartRepo.findOne(id);
-		if (selectedCart != null) {
-			return selectedCart.getProducts();
+	@RequestMapping("/products/{id}")
+	public Product findProduct(@PathVariable long id) {
+		Product selectedProduct = productRepo.findOne(id);
+		if (selectedProduct != null) {
+			return selectedProduct;
 		}
 		throw new ProductNotFoundException();
 		
@@ -42,4 +41,6 @@ public class BrowseController {
 	public class ProductNotFoundException extends RuntimeException {
 		
 	}
+
+
 }
