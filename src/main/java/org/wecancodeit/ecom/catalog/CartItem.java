@@ -17,8 +17,7 @@ public class CartItem {
 	private String name;
 
 	@JsonIgnore
-	@ManyToOne
-	private Cart cart;
+	@ManyToOne Cart cart;
 
 	public Cart getCart() {
 		return cart;
@@ -69,4 +68,5 @@ public class CartItem {
 			return false;
 		return true;
 	}
+
 }

@@ -1,6 +1,5 @@
 package org.wecancodeit.ecom.catalog;
 
-import java.awt.List;
 import java.util.Collection;
 import java.util.HashSet;
 
@@ -47,9 +46,11 @@ public class Cart {
 		cartItems.add(cartItem);
 	}
 
-//	public void removeItem(CartItem cartItem) {
-//		cartItems.(cartItem);
-//	}
+	public void removeItem(CartItem cartItem) {
+//		long itemToRemoveId = cartItem.getId();
+		cartItems.remove(cartItem);
+		cartItem.cart = null;
+	}
 
 	public void clearCart() {
 		cartItems.clear();
