@@ -42,20 +42,20 @@ public class MaintenanceMvcTest {
 	private ObjectMapper jsonMapper;
 	
 	@MockBean
-	private CrudRepository<Inventory, Long> productRepo;
+	private CrudRepository<Product, Long> productRepo;
 	
 	
 	@Test
 	public void shouldCreateProduct () throws Exception {
-		Inventory product = new Inventory ("test product");
+		Product product = new Product ("test product");
 		String productJson = jsonMapper.writeValueAsString(product);
 		mvc.perform(MockMvcRequestBuilders.post("/products").content(productJson)).andExpect(status().isOk());
 	}
 	
 	@Test
 	public void shouldCreateProductAsExpected () throws Exception {
-		Inventory product = new Inventory ("test product");
-		when(productRepo.save(any(Inventory.class))).thenReturn(new Inventory("response product name"));
+		Product product = new Product ("test product");
+		when(productRepo.save(any(Product.class))).thenReturn(new Product("response product name"));
 		String productJson = jsonMapper.writeValueAsString(product);
 		
 		MockHttpServletRequestBuilder request = post("/products").content(productJson);

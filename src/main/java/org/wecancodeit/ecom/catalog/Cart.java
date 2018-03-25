@@ -46,6 +46,7 @@ public class Cart {
 		cartItems.add(cartItem);
 	}
 
+
 	public void removeItem(CartItem cartItem) {
 //		long itemToRemoveId = cartItem.getId();
 		cartItems.remove(cartItem);
@@ -77,5 +78,6 @@ public class Cart {
 			return false;
 		return true;
 	}
+
 
 }

@@ -14,7 +14,6 @@ public class CartItem {
 	@GeneratedValue
 	private long id;
 
-	private String name;
 
 	@JsonIgnore
 	@ManyToOne Cart cart;
@@ -23,26 +22,23 @@ public class CartItem {
 		return cart;
 	}
 
-	// private Inventory product;
-
-	// public Inventory getProduct() {
-	// return product;
-	// }
+//	 private Product product;
+//
+//	 public Product getProduct() {
+//	 return product;
+//	 }
 
 	public long getId() {
 		return id;
 	}
 
-	public String getName() {
-		return name;
-	}
+	
 
 	@SuppressWarnings("unused")
 	private CartItem() {
 	}
 
-	public CartItem(String name, Cart cart) {
-		this.name = name;
+	public CartItem(Product product, Cart cart) {
 		// this.product = product;
 		this.cart = cart;
 	}

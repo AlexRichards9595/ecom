@@ -22,6 +22,9 @@ public class ProductMappingTest {
 
 	@Resource
 	private CartRepository cartRepo;
+	
+	@Resource
+	private ProductRepository productRepo;
 
 	@Resource
 	private TestEntityManager entityManager;
@@ -32,36 +35,42 @@ public class ProductMappingTest {
 		cart = cartRepo.save(cart);
 		long cartId = cart.getId();
 
-		CartItem dillPickles = cartItemRepo.save(new CartItem("Dill Pickles", cart));
-		CartItem handBags = cartItemRepo.save(new CartItem("Gucci", cart));
-
+		Product dillPickles = productRepo.save(new Product("Dill Pickles"));
+		Product handBags = productRepo.save(new Product("Gucci"));
+		CartItem dillPicklesItem = cartItemRepo.save(new CartItem(dillPickles, cart));
+		CartItem handBagsItem = cartItemRepo.save(new CartItem(handBags, cart));
+		
 		entityManager.flush();
 		entityManager.clear();
 
 		cart = cartRepo.findOne(cartId);
-		assertThat(cart.getCartItems(), containsInAnyOrder(dillPickles, handBags));
+		assertThat(cart.getCartItems(), containsInAnyOrder(dillPicklesItem, handBagsItem));
 	}
 
 	@Test
 	public void shouldAddItemToCart() {
 		Cart cart = cartRepo.save(new Cart("go"));
-		CartItem dillPickles = cartItemRepo.save(new CartItem("Dill Pickles", cart));
-		CartItem handBags = cartItemRepo.save(new CartItem("Gucci", cart));
+		Product dillPickles = productRepo.save(new Product("Dill Pickles"));
+		Product handBags = productRepo.save(new Product("Gucci"));
+		CartItem dillPicklesItem = cartItemRepo.save(new CartItem(dillPickles, cart));
+		CartItem handBagsItem = cartItemRepo.save(new CartItem(handBags, cart));
 
-		cart.addItem(handBags);
-		cart.addItem(dillPickles);
+		cart.addItem(handBagsItem);
+		cart.addItem(dillPicklesItem);
 
-		assertThat(cart.getCartItems(), containsInAnyOrder(dillPickles, handBags));
+		assertThat(cart.getCartItems(), containsInAnyOrder(dillPicklesItem, handBagsItem));
 	}
 
 	@Test
 	public void shouldClearCart() {
 		Cart cart = cartRepo.save(new Cart("go"));
-		CartItem dillPickles = cartItemRepo.save(new CartItem("Dill Pickles", cart));
-		CartItem handBags = cartItemRepo.save(new CartItem("Gucci", cart));
+		Product dillPickles = productRepo.save(new Product("Dill Pickles"));
+		Product handBags = productRepo.save(new Product("Gucci"));
+		CartItem dillPicklesItem = cartItemRepo.save(new CartItem(dillPickles, cart));
+		CartItem handBagsItem = cartItemRepo.save(new CartItem(handBags, cart));
 
-		cart.addItem(handBags);
-		cart.addItem(dillPickles);
+		cart.addItem(handBagsItem);
+		cart.addItem(dillPicklesItem);
 
 		cart.clearCart();
 
@@ -73,20 +82,22 @@ public class ProductMappingTest {
 	@Test
 	public void shouldRemoveItemFromCart() {
 		Cart cart = cartRepo.save(new Cart("go"));
-		CartItem dillPickles = cartItemRepo.save(new CartItem("Dill Pickles", cart));
-		CartItem handBags = cartItemRepo.save(new CartItem("Gucci", cart));
+		Product dillPickles = productRepo.save(new Product("Dill Pickles"));
+		Product handBags = productRepo.save(new Product("Gucci"));
+		CartItem dillPicklesItem = cartItemRepo.save(new CartItem(dillPickles, cart));
+		CartItem handBagsItem = cartItemRepo.save(new CartItem(handBags, cart));
 
 		long cartId = cart.getId();
 
-		cart.removeItem(dillPickles);
+		cart.removeItem(dillPicklesItem);
 
 		entityManager.flush();
 		entityManager.clear();
 
 		cart = cartRepo.findOne(cartId);
 
-		assertThat(cart.getCartItems(), contains(handBags));
-		assertThat(cartItemRepo.findAll(), not(contains(dillPickles)));
+		assertThat(cart.getCartItems(), contains(handBagsItem));
+		assertThat(cartItemRepo.findAll(), not(contains(dillPicklesItem)));
 	}
 
 }

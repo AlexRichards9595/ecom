@@ -28,10 +28,10 @@ public class BrowseControllerTest {
 	private BrowseController underTest;
 	
 	@Mock
-	private CrudRepository<Inventory, Long> productRepo;
+	private CrudRepository<Product, Long> productRepo;
 	
 	@Mock
-	private Inventory product;
+	private Product product;
 	
 	@Before
 	public void setUp() {
@@ -42,16 +42,16 @@ public class BrowseControllerTest {
 	public void shouldFindProducts() {
 		when(productRepo.findAll()).thenReturn(Collections.singleton(product));
 		
-		Iterable<Inventory> result = underTest.findProducts();
+		Iterable<Product> result = underTest.findProducts();
 		
-		assertThat(result, contains(any(Inventory.class)));
+		assertThat(result, contains(any(Product.class)));
 	}
 	
 	@Test
 	public void shouldRetrieveAnIndividualProduct() {
 		long id = 42L;
 		when(productRepo.findOne(id)).thenReturn(product);
-		Inventory result = underTest.findProduct(id);
+		Product result = underTest.findProduct(id);
 		
 		assertThat(result, is(product));
 	}
@@ -65,7 +65,7 @@ public class BrowseControllerTest {
 	public void shouldRetrieveProductsFromDb() {
 		when(productRepo.findAll()).thenReturn(Collections.singleton(product));
 
-		Iterable<Inventory> result = underTest.findProducts();
+		Iterable<Product> result = underTest.findProducts();
 		
 		assertThat(result, contains(product));
 	}

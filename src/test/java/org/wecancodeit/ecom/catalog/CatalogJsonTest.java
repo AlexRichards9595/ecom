@@ -14,20 +14,20 @@ import org.springframework.boot.test.autoconfigure.json.JsonTest;
 import org.springframework.boot.test.json.JacksonTester;
 import org.springframework.boot.test.json.JsonContent;
 import org.springframework.test.context.junit4.SpringRunner;
-import org.wecancodeit.ecom.catalog.Inventory;
+import org.wecancodeit.ecom.catalog.Product;
 
 @RunWith(SpringRunner.class)
 @JsonTest
 public class CatalogJsonTest {
 
 	@Resource
-	private JacksonTester<Inventory> productJson;
+	private JacksonTester<Product> productJson;
 	
 	@Test
 	public void shouldSerialize() throws IOException {
-		Inventory product = new Inventory("product name");
+		Product product = new Product("product name");
 		
-		JsonContent<Inventory> content = productJson.write(product);
+		JsonContent<Product> content = productJson.write(product);
 		
 		assertThat(content).extractingJsonPathValue("@.name").isEqualTo("product name");
 	}
@@ -36,7 +36,7 @@ public class CatalogJsonTest {
 	public void shouldDeserialize() throws IOException {
 		String expectedJson = "{ \"name\": \"product name\" }";
 		
-		Inventory parsed = productJson.parseObject(expectedJson);
+		Product parsed = productJson.parseObject(expectedJson);
 		
 		assertThat(parsed.getName()).isEqualTo("product name");
 	}

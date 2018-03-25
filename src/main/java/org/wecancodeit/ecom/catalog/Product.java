@@ -9,7 +9,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 
 @Entity
-public class Inventory {
+public class Product {
 
 	@Id
 	@GeneratedValue
@@ -26,10 +26,10 @@ public class Inventory {
 	}
 
 	@SuppressWarnings("unused")
-	private Inventory() {
+	private Product() {
 	}
 
-	public Inventory(String name) {
+	public Product(String name) {
 		this.name = name;
 	}
 
